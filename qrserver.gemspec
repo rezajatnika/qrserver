@@ -18,6 +18,13 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  # Dependency
+  spec.add_runtime_dependency 'httparty'
+
+  # Development
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake",    "~> 10.0"
+
+  # Test
+  spec.add_development_dependency "minitest-reporters"
 end

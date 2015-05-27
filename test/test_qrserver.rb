@@ -1,11 +1,20 @@
 require 'minitest_helper'
 
 class TestQrserver < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Qrserver::VERSION
+  def setup
+    @object = Object.new
+    @object.extend(Qrserver)
+
+    # Query variables
+    @query    = { size: @size, format: @format, ecc: @ecc, data: 'string' }
+    @merged_q = { query: @query }
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_generate_qr_code
+    assert_equal 'string', @object.generate_qr_code('string')
+  end
+
+  def test_build_query
+    assert_equal @merged_q, @object.send(:build_query, data: 'string')
   end
 end
